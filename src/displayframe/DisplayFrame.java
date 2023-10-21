@@ -39,7 +39,6 @@ public class DisplayFrame extends JFrame {
 
         this.setContentPane(panel);
         this.setVisible(true);
-
     }
 
 
