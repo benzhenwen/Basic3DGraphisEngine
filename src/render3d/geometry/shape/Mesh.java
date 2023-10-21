@@ -9,7 +9,7 @@ public abstract class Mesh {
 
     // load types
 
-    public enum FILETYPE {RAW};
+    public enum FILETYPE {RAW, OBJ};
 
 
     // constructor
@@ -67,7 +67,7 @@ public abstract class Mesh {
      * rotates all vertices on the mesh by m
      * @param m matrix
      */
-    public abstract void rotate(RotationMatrix m);
+    public abstract void applyRotationMatrix(RotationMatrix m);
 
 
     // loading methods
@@ -86,6 +86,9 @@ public abstract class Mesh {
         switch(fileExt) {
             case "raw":
                 f = FILETYPE.RAW;
+                break;
+            case "obj":
+                f = FILETYPE.OBJ;
                 break;
             default:
                 throw new RuntimeException("file extension not supported");
@@ -110,7 +113,10 @@ public abstract class Mesh {
 
         switch(format) {
             case RAW:
-
+                mesh.loadRAW(fileString);
+                break;
+            case OBJ:
+                mesh.loadOBJ(fileString);
                 break;
         }
 
@@ -121,7 +127,7 @@ public abstract class Mesh {
 
     protected abstract void loadRAW(String loadString);
 
-
+    protected abstract void loadOBJ(String loadString);
 
 
 
