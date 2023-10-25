@@ -52,6 +52,20 @@ public class Vertex3 {
         z = otherm.get(2, 0);
     }
 
+    // modification methods
+
+    public void add(Vertex3 other) {
+        this.x += other.x;
+        this.y += other.y;
+        this.z += other.z;
+    }
+
+    public void move(Vector3 movement) {
+        this.x += movement.x;
+        this.y += movement.y;
+        this.z += movement.z;
+    }
+
 
     // transform methods
 

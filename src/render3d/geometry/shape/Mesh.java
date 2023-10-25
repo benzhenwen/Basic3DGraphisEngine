@@ -69,6 +69,12 @@ public abstract class Mesh {
      */
     public abstract void applyRotationMatrix(RotationMatrix m);
 
+    /**
+     * translates all verticies of the mesh by a vector
+     * @param translation translation
+     */
+    public abstract void translate(Vector3 translation);
+
 
     // loading methods
 

@@ -136,6 +136,11 @@ public class FaceVertexMesh extends Mesh {
         }
     }
 
+    public void translate(Vector3 translation) {
+        for(Vertex3 v : vertices.values()) {
+            v.move(translation);
+        }
+    }
 
     // accessors
 

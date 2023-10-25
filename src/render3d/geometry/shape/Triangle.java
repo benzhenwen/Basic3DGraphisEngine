@@ -60,6 +60,13 @@ public class Triangle {
         return new Edge(v3, v1);
     }
 
+    public Vector3 getNormal() {
+        Vector3 vec1 = v1.toVector(v2);
+        Vector3 vec2 = v1.toVector(v3);
+        vec1.cross(vec2);
+        return vec1;
+    }
+
 
     // comparison
 

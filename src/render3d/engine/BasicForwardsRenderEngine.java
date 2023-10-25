@@ -4,7 +4,6 @@ import render3d.geometry.shape.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 
 public class BasicForwardsRenderEngine {
 

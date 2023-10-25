@@ -31,7 +31,6 @@ public class AxisAngle {
     public AxisAngle(double angle, Vector3 axis) {
         this.angle = angle;
         this.axis = axis;
-        axis.normalize();
     }
 
 
