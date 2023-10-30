@@ -49,15 +49,16 @@ public class CameraOrthogonalDemo {
         Graphics2D g2 = (Graphics2D) out.getGraphics();
         g2.setBackground(Color.black);
 
-        Runnable runnable = new Runnable() {
-            public void run() {
-                c.renderTo(out, m, new Vector3(0.5, -0.7, -1));
-                f.draw(out);
+        Vector3 lightVector = new Vector3(1, -1, -1);
+        lightVector.normalize();
 
-                m.applyRotationMatrix(rotMatrix1);
-                m.applyRotationMatrix(rotMatrix2);
-                m.applyRotationMatrix(rotMatrix3);
-            }
+        Runnable runnable = () -> {
+            c.renderTo(out, m, lightVector);
+            f.draw(out);
+
+            m.applyRotationMatrix(rotMatrix1);
+            m.applyRotationMatrix(rotMatrix2);
+            m.applyRotationMatrix(rotMatrix3);
         };
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(8);

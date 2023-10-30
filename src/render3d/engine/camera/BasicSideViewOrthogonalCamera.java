@@ -5,7 +5,6 @@ import render3d.geometry.shape.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
 import java.util.Arrays;
 
 public class BasicSideViewOrthogonalCamera extends OrthogonalCamera {
@@ -23,8 +22,6 @@ public class BasicSideViewOrthogonalCamera extends OrthogonalCamera {
     // rendering
 
     public void renderTo(BufferedImage image, Mesh mesh, Vector3 light) {
-
-        light.normalize();
 
         Triangle[] meshTriangles = mesh.getFaceList();
 
@@ -52,7 +49,7 @@ public class BasicSideViewOrthogonalCamera extends OrthogonalCamera {
             double faceDepth = t.getV1().z/3 + t.getV2().z/3 + t.getV3().z/3;
             Vector3 faceNorm = t.getNormal();
             faceNorm.normalize();
-            int shade = (int) (Math.pow(((light.dot(faceNorm) + 1)/2), 2) * 255);
+            int shade = (int) Math.max(0, Math.min(255, ((Math.pow(((light.dot(faceNorm) + 1)/2), 2) * 255))));
 
             if(faceDepth > this.position.z) { // is the face behind the camera?
                 for(int row = pixelRowMin; row <= pixelRowMax; row++) {
@@ -76,7 +73,6 @@ public class BasicSideViewOrthogonalCamera extends OrthogonalCamera {
                                     ( edge1Vector.z <= 0 && edge2Vector.z <= 0 && edge3Vector.z <= 0 ) // check if inside the triangle
                             ) {
                                 zBuffer[row * h + col] = faceDepth;
-
                                 pixelVector[row * h + col] = new Color(shade, shade, shade).getRGB();
                             }
                         }

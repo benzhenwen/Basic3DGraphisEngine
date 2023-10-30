@@ -70,7 +70,7 @@ public abstract class Mesh {
     public abstract void applyRotationMatrix(RotationMatrix m);
 
     /**
-     * translates all verticies of the mesh by a vector
+     * translates all vertices of the mesh by a vector
      * @param translation translation
      */
     public abstract void translate(Vector3 translation);
@@ -88,17 +88,11 @@ public abstract class Mesh {
         String[] fileSplit = file.getName().split("\\.");
         String fileExt = fileSplit[fileSplit.length-1].toLowerCase();
 
-        FILETYPE f = null; // get the file format
-        switch(fileExt) {
-            case "raw":
-                f = FILETYPE.RAW;
-                break;
-            case "obj":
-                f = FILETYPE.OBJ;
-                break;
-            default:
-                throw new RuntimeException("file extension not supported");
-        }
+        FILETYPE f = switch (fileExt) {
+            case "raw" -> FILETYPE.RAW;
+            case "obj" -> FILETYPE.OBJ;
+            default -> throw new RuntimeException("file extension not supported");
+        }; // get the file format
 
         try {
             String stringIn = Files.readString(file.toPath());

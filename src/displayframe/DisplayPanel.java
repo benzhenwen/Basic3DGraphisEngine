@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class DisplayPanel extends JPanel {
+/* package */ class DisplayPanel extends JPanel {
 
     BufferedImage b;
 
